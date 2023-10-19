@@ -1,16 +1,17 @@
-// Prompt the user for the student number
-var studentNumber = prompt("Enter the student number:");
-
-// Select the target element by its class name
+// Find the target element by class name
 var targetElement = document.querySelector('.mantine-Text-root.mantine-br57bs');
 
 if (targetElement) {
-  // Check if the studentNumber exists and update the content and style accordingly
-  if (studentNumber) {
+  // Use regular expressions to extract the student number
+  var content = targetElement.textContent;
+  var studentNumberMatch = content.match(/\d+/);
+
+  if (studentNumberMatch) {
+    var studentNumber = studentNumberMatch[0];
     targetElement.textContent = "Student " + studentNumber + "'s fees are up to date";
     targetElement.style.color = 'rgb(255, 125, 0)';
   } else {
-    alert("Invalid student number. No changes were made.");
+    alert("Could not find a valid student number. No changes were made.");
   }
 }
 
